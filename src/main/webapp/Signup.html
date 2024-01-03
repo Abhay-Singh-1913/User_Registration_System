@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <form action="signup">
+        <div class="m-auto w-2/3 mt-5 py-5 px-10 shadow-2xl text-center bg-slate-50 md:w-2/5">
+            <h1 class=" text-2xl">Sign Up</h1>
+            <hr class="my-5">
+
+            <label for="fullname" class="font-mono mr-3">Full Name</label>
+            <input type="text" id="fullname" name="fullname" class="py-2 px-4 mb-1 rounded-2xl bg-slate-200 w-5/6 md:w-2/4 md:mb-5" required/><br>
+
+            <label for="dob" class="font-mono mr-3">D.O.B</label>
+            <input type="date" id="dob" name="date" class="py-2 px-4 mb-5 rounded-2xl bg-slate-200 w-5/6 md:w-2/4" required/><br>
+
+            <label for="email" class="font-mono mr-3">Email</label>
+            <input type="email" id="email" name="email" class="py-2 px-4 mb-5 rounded-2xl bg-slate-200 w-5/6 md:w-2/4" required/><br>
+
+            <label for="phone" class="font-mono mr-3">Phone no.</label>
+            <input type="tel" id="phone" name="phone" class="py-2 px-4 mb-5 rounded-2xl bg-slate-200 w-5/6 md:w-2/4"  minlength="10" maxlength="10" required/><br>
+
+            <label for="username" class="font-mono mr-3">Username</label>
+            <input type="text" id="username" name="username"  class="py-2 px-4 mb-5 rounded-2xl bg-slate-200 w-5/6 md:w-2/4" required/><br>
+
+            <label for="password" class="font-mono mr-3">Password</label>
+            <input type="password" id="password" name="password" class="py-2 px-4 mb-5 rounded-2xl bg-slate-200 w-5/6 md:w-2/4 " required/><br>
+
+
+            <input type="submit" value="Register"
+                class="py-2 m-auto md:m-auto px-4 rounded-2xl text-white bg-red-400 w-5/6 cursor-pointer">
+        </div>
+    </form>
+
+</body>
+</html>
