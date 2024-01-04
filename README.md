@@ -1,4 +1,4 @@
-# User_Registration_System
+# User_Registration_System(using Servlet)
 
 ## Description:
 Create a basic User Registration System using servlets. The application should allow users to register by providing their information through a form. The information should be stored in memory. (for simplicity) Users should also be able to log in and view their registration details.
