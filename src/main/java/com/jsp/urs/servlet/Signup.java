@@ -3,7 +3,6 @@ package com.jsp.urs.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.urs.controller.Controller;
 import com.jsp.urs.model.User;
-import com.jsp.urs.model.UserData;
 
-@WebServlet(value = "/signup")
+@WebServlet(value = "/signup", loadOnStartup = 2)
 public class Signup extends HttpServlet {
 
-	static UserData userdate = new UserData();
 	static Controller controller = new Controller();
 
 	@Override
@@ -34,27 +31,39 @@ public class Signup extends HttpServlet {
 		LocalDate dob = LocalDate.parse(date);
 		long phone_no = Long.parseLong(phone);
 
-		User newUser = new User();
-		newUser.setFullname(fullname);
-		newUser.setDob(dob);
-		newUser.setMail_id(email);
-		newUser.setPhone_no(phone_no);
-		newUser.setUsername(username);
-		newUser.setPassword(password);
+		User user = controller.searchUsername(username);
+		if (user == null) {
+			User newUser = new User();
+			newUser.setFullname(fullname);
+			newUser.setDob(dob);
+			newUser.setMail_id(email);
+			newUser.setPhone_no(phone_no);
+			newUser.setUsername(username);
+			newUser.setPassword(password);
 
-		List<User> users = UserData.getUsers();
-		
-		users.add(newUser);
-		
-		System.out.println("Registration Done");
+			controller.addUser(newUser);
 
-		//System.out.println(controller.getAllUsers());
-		
-		PrintWriter printWriter = resp.getWriter();
-		printWriter.print("<HTML><BODY>");
-		printWriter.print("<h1>Successfully Register</h1>");
-		printWriter.print("<button><a href=\"Login.html\">Login</a></button>");
-		printWriter.print("</BODY></HTML>");
+			System.out.println("Registration Done");
+
+			// System.out.println(controller.getAllUsers());
+
+			PrintWriter printWriter = resp.getWriter();
+			printWriter.print("<!DOCTYPE html>\r\n" + "<html lang=\"en\">\r\n" + "<head>\r\n"
+					+ "    <meta charset=\"UTF-8\">\r\n"
+					+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
+					+ "    <title>Message</title>\r\n" + "    <script src=\"https://cdn.tailwindcss.com\"></script>\r\n"
+					+ "</head>\r\n" + "<body class=\"bg-slate-300\">\r\n"
+					+ "    <div class=\" m-auto w-1/4 mt-20 shadow-2xl\">\r\n"
+					+ "        <div class=\"bg-green-600 px-5 py-10\">\r\n"
+					+ "            <img src=\"./img/rigthlogo.png\" alt=\"LOGO\" class=\"w-1/5 m-auto\">\r\n"
+					+ "            <h1 class=\"text-center text-white text-xl\">SUCCESS</h1>\r\n" + "        </div>\r\n"
+					+ "        <div class=\"bg-slate-50 px-10 text-slate-500 py-5 text-center\">\r\n"
+					+ "            <p class=\"mb-7\">Congratulations, your account has been successfully register. </p>\r\n"
+					+ "            <a href=\"Login.html\" class=\"bg-green-600 py-2 px-14 rounded-3xl text-white\">Login</a>\r\n"
+					+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>");
+		} else {
+			resp.sendRedirect("/User_Registration_System/Login.html");
+		}
 
 	}
 
