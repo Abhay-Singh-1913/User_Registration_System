@@ -1,46 +1,38 @@
-package com.jsp.urs.servlet;
+<!DOCTYPE html>
+<html lang="en">
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+<body class="bg-slate-200">
+    <form action="login">
+        <div class="m-auto w-auto mt-14 shadow-2xl md:w-3/4 md:flex">
+            <div class="bg-red-400 px-5 py-28 w-4/5 m-auto text-center md:w-2/3 md:m-0 text-white">
+                <h1 class="font-bold text-4xl">Welcome to login</h1>
+               <h1 class="mb-5">Don't have an account?</h1>
+                <a href="Signup.html" class="border-2 border-white rounded-3xl py-2 px-4 text-center cursor-pointer">Sign Up</a>
+            </div>
+            <div class=" bg-slate-50 py-9 px-7 m-auto w-4/5 md:w-2/3">
+                <h1 class="pt-5 text-2xl">Login</h1>
+                <hr class="my-5">
+                <Label for="uname" class="font-mono">USERNAME</Label><br>
+                <input type="text" id="uname" name="username" placeholder="Username"
+                    class="py-2 px-4 mb-5 rounded-2xl bg-slate-200 w-5/6 md:w-80"><br>
+                <Label for="pass" class="font-mono">PASSWORD</Label><br>
+                <input type="password" name="password" id="pass" placeholder="Password"
+                    class="py-2 px-4 mb-5 rounded-2xl bg-slate-200 w-5/6 md:w-80"><br>
+                <input type="submit" value="Log In"
+                    class="py-2 px-4 mb-5 rounded-2xl text-white bg-red-400 w-5/6 md:w-80 cursor-progress">
+                <br>
+                <a href="#" class="text-gray-500 cursor-pointer">Forgot Password</a><p class="text-red-400">If its refresh: password/user is invalid</p>
+            </div>
+        </div>
+    </form>
+</body>
 
-import com.jsp.urs.controller.Controller;
-import com.jsp.urs.model.User;
-import com.jsp.urs.model.UserData;
-
-@WebServlet(value = "/login")
-public class Login extends HttpServlet {
-
-	static Controller controller = new Controller();
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-
-		System.out.println("Welcome to Login");
-
-		List<User> users = UserData.getUsers();
-
-		for (User user : users) {
-			if (user.getUsername().equalsIgnoreCase(username)) {
-				PrintWriter printWriter = resp.getWriter();
-				printWriter.print("<HTML><BODY>");
-				printWriter.print("<h1>Successfully login</h1>");
-				printWriter.print("<p>Hello " + user.getFullname() + "</p>");
-				printWriter.print("</BODY></HTML>");
-			} else {
-				System.out.println("No user find");
-			}
-		}
-
-	}
-
-}
+</html>
