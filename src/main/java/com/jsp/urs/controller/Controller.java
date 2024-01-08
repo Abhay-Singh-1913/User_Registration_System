@@ -8,15 +8,15 @@ import com.jsp.urs.model.UserData;
 public class Controller {
 
 	private UserData userdata = new UserData();
-//
-//	public void addUser(User user) {
-//		UserData.getUsers();
-//		if (Users == null) {	
-//			Users = new ArrayList<>();
-//			userdata.setUsers(Users);
-//		}
-//		Users.add(user);
-//	}
+
+	public void addUser(User user) {
+		UserData.getUsers();
+		if (Users == null) {	
+			Users = new ArrayList<>();
+			userdata.setUsers(Users);
+		}
+		Users.add(user);
+	}
 //
 //	public User searchUser(String username) {
 //		List<User> users = userdata.getUsers();
