@@ -36,7 +36,11 @@ public class Login extends HttpServlet {
 					System.out.println("Success");
 					resp.sendRedirect("index.jsp");
 		} else {
-			resp.sendRedirect("/User_Registration_System/Login.html");
+			PrintWriter printWriter = resp.getWriter();
+			printWriter.print("<html><body><script>alert(\"Invalid Credentials, Please try again\");</script></body></html>");
+
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("Login.html");
+			requestDispatcher.include(req, resp);
 		}
 	}
 
