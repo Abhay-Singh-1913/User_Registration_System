@@ -62,7 +62,11 @@ public class Signup extends HttpServlet {
 					+ "            <a href=\"Login.html\" class=\"bg-green-600 py-2 px-14 rounded-3xl text-white\">Login</a>\r\n"
 					+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>");
 		} else {
-			resp.sendRedirect("/User_Registration_System/Login.html");
+			PrintWriter printWriter = resp.getWriter();
+			printWriter.print("<html><body><script>alert(\"User Already Exits, Please try again\");</script></body></html>");
+			
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("Login.html");
+			requestDispatcher.include(req, resp);
 		}
 
 	}
