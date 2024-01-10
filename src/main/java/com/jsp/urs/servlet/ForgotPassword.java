@@ -45,7 +45,11 @@ public class ForgotPassword extends HttpServlet{
 						+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>");
 			}
 		} else {
-			resp.sendRedirect("/User_Registration_System/ForgotPassword.html");
+			PrintWriter printWriter = resp.getWriter();
+			printWriter.print("<html><body><script>alert(\"Invalid Credentials, Please try again\");</script></body></html>");
+
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("ForgotPassword.html");
+			requestDispatcher.include(req, resp);
 		}
 		
 		
